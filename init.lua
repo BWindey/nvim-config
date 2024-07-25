@@ -9,4 +9,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 require("line_number_autocommands")
 
+-- Nice functions
+require("functions")
+
 require("config.lazy")

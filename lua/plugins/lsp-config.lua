@@ -37,7 +37,9 @@ return {
 			lspconfig.hls.setup({})
 			lspconfig.java_language_server.setup({})
 			lspconfig.tsserver.setup({})
-			lspconfig.ltex.setup({})
+			lspconfig.ltex.setup({
+				filetypes = { 'tex' },
+			})
 			lspconfig.markdown_oxide.setup({})
 			lspconfig.ruff.setup({})
 

@@ -1,11 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-
-		build = function()
-			require("nvim-treesitter.install").update({ with_sync = true })()
-		end,
-
+		build = "TSUpdate",
 		opts = {
 			ensure_installed = {
 				"asm",
@@ -31,7 +27,6 @@ return {
 
 			-- Only for the ensure_installed
 			sync_install = true,
-
 			auto_install = true,
 		},
 	},

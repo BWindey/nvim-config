@@ -9,6 +9,28 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 require("line_number_autocommands")
 
+-- When in doubt about some option, use `:help <option>`
+--
+-- Tabs - spaces, the whole jimmiemagick
+vim.opt.tabstop = 4			-- Render '\t' as 4 spaces
+vim.opt.softtabstop = 0		-- Set the number of spaces when pressing tab
+vim.opt.shiftwidth = 4		-- Indentation level 4 spaces
+vim.opt.expandtab = false	-- Replace '\t' with spaces
+vim.smartindent = true		-- Auto-indentation for programming
+
+vim.opt.wrap = false
+vim.opt.hlsearch = false 	-- Highlight all matching patterns from search
+vim.opt.incsearch = true	-- Highlight while typing search-pattern
+
+vim.opt.swapfile = true		-- False if file is confidential
+vim.opt.backup = false
+vim.opt.undofile = true
+
+vim.opt.scrolloff = 8		-- Keep 8 lines above/below cursor visible
+vim.opt.signcolumn = "number"
+vim.opt.colorcolumn = "80"	-- Visual guide to keep lines shorter then 80 chars
+
+
 require("functions")
 
 require("config.lazy")

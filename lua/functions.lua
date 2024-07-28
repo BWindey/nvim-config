@@ -19,6 +19,4 @@ function Discord()
 	vim.fn.setreg('"', reg_save)
 end
 
-vim.cmd([[
-  command! -range=% Discord :<line1>,<line2>call v:lua.Discord()
-]])
+vim.cmd("command! -range=% Discord :<line1>,<line2>call v:lua.Discord()")

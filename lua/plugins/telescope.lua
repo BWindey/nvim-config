@@ -7,11 +7,18 @@ return {
 		},
 
 		config = function()
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+			-- Keymap using which-key
+			local wk = require("which-key")
+			local ts = require("telescope.builtin")
+
+			wk.add({
+				mode = { 'n' },
+				{ "<leader>f", group = "Search for..." },
+				{ "<leader>ff", ts.find_files,	desc = "Find files" },
+				{ "<leader>fg", ts.live_grep,	desc = "Live grep" },
+				{ "<leader>fb", ts.buffers,		desc = "Search buffers" },
+				{ "<leader>fh", ts.help_tags,	desc = "Search help-tags" },
+			})
 		end,
 	},
 	{

@@ -29,19 +29,22 @@ return {
 		"neovim/nvim-lspconfig",
 
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.bashls.setup({})
-			lspconfig.clangd.setup({})
-			lspconfig.html.setup({})
-			lspconfig.hls.setup({})
-			lspconfig.java_language_server.setup({})
-			lspconfig.tsserver.setup({})
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.bashls.setup({ capabilities = capabilities })
+			lspconfig.clangd.setup({ capabilities = capabilities })
+			lspconfig.html.setup({ capabilities = capabilities })
+			lspconfig.hls.setup({ capabilities = capabilities })
+			lspconfig.java_language_server.setup({ capabilities = capabilities })
+			lspconfig.tsserver.setup({ capabilities = capabilities })
 			lspconfig.ltex.setup({
 				filetypes = { 'tex' },
+ 				capabilities = capabilities,
 			})
-			lspconfig.markdown_oxide.setup({})
-			lspconfig.ruff.setup({})
+			lspconfig.markdown_oxide.setup({ capabilities = capabilities })
+			lspconfig.ruff.setup({ capabilities = capabilities })
 
 			-- Add a border to the hover-window
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(

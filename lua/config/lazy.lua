@@ -27,6 +27,9 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
+	ui = {
+		border = "rounded",	-- see 'border' for ':help nvim_open_win'
+	},
 
 	-- colorscheme that will be used when installing plugins:
 	install = { colorscheme = { "gruvbox" } },

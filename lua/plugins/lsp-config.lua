@@ -59,7 +59,14 @@ return {
 				{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover" },
 				{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
 				{ "<leader>ld", vim.lsp.buf.definition, desc = "Jump to definition" },
-				{ "<leader>la", vim.lsp.buf.code_action, desc = "Code actions"  },
+				{ "<leader>la", vim.lsp.buf.code_action, desc = "Code actions" },
+				{
+					"<leader>le",
+					function() vim.diagnostic.open_float({
+						scope = "line", border = "rounded"
+					}) end,
+					desc = "Show diagnostic info",
+				},
 			})
 		end,
 	},

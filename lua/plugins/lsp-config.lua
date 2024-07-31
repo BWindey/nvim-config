@@ -60,6 +60,17 @@ return {
 				{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
 				{ "<leader>ld", vim.lsp.buf.definition, desc = "Jump to definition" },
 				{ "<leader>la", vim.lsp.buf.code_action, desc = "Code actions" },
+				{ "<leader>lj", group = "Jump to ... diagnostic" },
+				{
+					"<leader>ljn",
+					function() vim.diagnostic.goto_next({ float = false }) end,
+					desc = "Jump to next diagnostic"
+				},
+				{
+					"<leader>ljp",
+					function() vim.diagnostic.goto_prev({ float = false }) end,
+					desc = "Jump to previous diagnostic"
+				},
 				{
 					"<leader>le",
 					function() vim.diagnostic.open_float({

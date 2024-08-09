@@ -31,11 +31,18 @@ require("lazy").setup({
 		border = "rounded",	-- see 'border' for ':help nvim_open_win'
 	},
 
+	git = {
+		log = { "-5" },
+	},
+
 	-- colorscheme that will be used when installing plugins:
 	install = { colorscheme = { "gruvbox" } },
 
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = {
+		enabled = true,
+		frequency = 604800,		-- Only check once a week
+	},
 })
 
 

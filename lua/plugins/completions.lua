@@ -33,14 +33,36 @@ return {
 					["<C-Space"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+					['<Tab>'] = cmp.mapping(
+						function (fallback)
+							local luasnip = require("luasnip")
+							if luasnip.expand_or_jumpable() then
+								luasnip.expand_or_jump()
+							else
+								fallback()
+							end
+						end
+					)
 				}),
 
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
+					{ name = "nvim_lsp", priority = 8 },
+					{ name = "luasnip", priority = 7 },
 				}, {
-					{ name = "buffer" },
+					{ name = "buffer", priority = 9 },
 				}),
+
+				sorting = {
+					comparators = {
+						cmp.config.compare.locality,
+						cmp.config.compare.recently_used,
+						cmp.config.compare.score,
+						cmp.config.compare.offset,
+						cmp.config.compare.recently_used,
+						cmp.config.compare.order,
+					},
+				},
 			})
 		end,
 	}

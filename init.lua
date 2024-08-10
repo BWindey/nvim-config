@@ -9,6 +9,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 require("line_number_autocommands")
 
+vim.opt.mouse = ""
+
 -- When in doubt about some option, use `:help <option>`
 --
 -- Tabs - spaces, the whole jimmiemagick

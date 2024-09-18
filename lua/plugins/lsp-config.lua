@@ -17,7 +17,7 @@ return {
 					"html",
 					"hls",					-- Haskell
 					"java_language_server",
-					"tsserver",				-- JS
+					"ts_ls",				-- JS
 					"ltex",					-- Latex
 					"markdown_oxide",
 					"ruff",					-- Python
@@ -38,7 +38,7 @@ return {
 			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.hls.setup({ capabilities = capabilities })
 			lspconfig.java_language_server.setup({ capabilities = capabilities })
-			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.ts_ls.setup({ capabilities = capabilities })
 			lspconfig.ltex.setup({
 				filetypes = { 'tex' },
  				capabilities = capabilities,

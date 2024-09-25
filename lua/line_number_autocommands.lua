@@ -12,7 +12,8 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "WinLeave" }, {
 vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 	group = vim.api.nvim_create_augroup("cmd-line-relnum-toggle-off", { clear = true }),
 	callback = function()
-		if vim.bo.filetype ~= "help" then
+		local file_name = vim.fn.expand("%")
+		if vim.bo.filetype ~= "help" and file_name:find("^DAP") ~= 1 and file_name:find("^%[dap%-") ~= 1 then
 			vim.wo.relativenumber = true
 			vim.cmd([[ redraw ]])
 		end

@@ -46,9 +46,36 @@ return {
 	},
 	{
 		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+		},
 		config = function ()
-			require("dapui").setup({})
+			require("dapui").setup({
+				expand_lines = false,
+				layouts = {
+					{
+						elements = {
+							"console",
+							"watches",
+							"scopes",
+						},
+						size = 0.3,
+						position = "right"
+					},
+					{
+						elements = {
+							"repl",
+							"stacks",
+						},
+						size = 0.3,
+						position = "bottom",
+					},
+				},
+				floating = {
+					border = "rounded",
+				},
+			})
 		end
 	},
 }

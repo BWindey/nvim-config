@@ -9,8 +9,10 @@ map('n', '<C-Up>', '<C-w>k')
 map('n', '<C-Down>', '<C-w>j')
 map('n', '<C-Left>', '<C-w>h')
 map('n', '<C-Right>', '<C-w>l')
+map('i', '<C-f>', '<C-x><C-f>')
 
-require("which-key").add({
+local wk = require("which-key")
+wk.add({
 	mode = 'n',
 	{ "<leader>o", group = "Open..." },
 	{ "<leader>ot", function ()

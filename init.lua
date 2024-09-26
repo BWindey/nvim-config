@@ -38,6 +38,6 @@ vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
 require("functions")
 require("folds")
-require("keybinds")
 
 require("config.lazy")
+require("keybinds")

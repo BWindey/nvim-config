@@ -54,6 +54,8 @@ dap.adapters.codelldb = function(on_adapter)
 	vim.defer_fn(function() on_adapter(adapter) end, 1000)
 end
 
+-- Utility function to show a list of items and wait for the user to choose
+-- before continuing
 local function pick_one(items, prompt, label_fn, cb)
 	local co
 	if not cb then
@@ -74,6 +76,7 @@ local function pick_one(items, prompt, label_fn, cb)
 	end
 end
 
+-- Utility function to ask the user for some input in a floating window
 local function get_input(_prompt)
 	local co, cb
 	co = coroutine.running()
@@ -83,6 +86,8 @@ local function get_input(_prompt)
 		end
 	end
 	cb = vim.schedule_wrap(cb)
+
+	-- nui for the floating window
 	local _input = require("nui.input")
 	local input = _input(
 		{
@@ -96,12 +101,13 @@ local function get_input(_prompt)
 		}
 	)
 	input:mount()
-	-- vim.ui.input(opts, cb)
+
 	if co then
 		return coroutine.yield()
 	end
 end
 
+-- Ask the user to select an executable from the list `find` (bash) finds
 local function select_debug_executable()
 	local exes = {}
 	local files = io.popen("find . -type f -executable")
@@ -111,12 +117,12 @@ local function select_debug_executable()
 		end
 		files:close()
 	end
+
 	if not files or #exes == 0 then
 		return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 	end
 
 	local path = pick_one(exes, "Pick debug executable: ")
-	print(path)
 	return path
 end
 
@@ -134,7 +140,7 @@ dap.configurations.cpp = {
 		args = function()
 			local args_list = {}
 			local extra_inputs = get_input("Program args: ")
-			for a in extra_inputs:gmatch("([^ ]+)") do
+			for a in vim.split(extra_inputs) do
 				table.insert(args_list, a)
 			end
 			return args_list

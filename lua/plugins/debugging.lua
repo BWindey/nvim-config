@@ -11,10 +11,12 @@ return {
 				mode = 'n',
 				{ "<leader>d", group = "Debugging..." },
 				{ "<leader>db", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
-				{ "<leader>di", dap.step_into, desc = "Step into" },
-				{ "<leader>do", dap.step_over, desc = "Step over" },
 				{ "<leader>dc", dap.continue, desc = "Continue/start" },
 			})
+			-- Keys lay logically for me this way, F5 in middle, F8 above, F2 below
+			vim.keymap.set('n', '<F5>', function() require('dap').step_over() end)
+			vim.keymap.set('n', '<F2>', function() require('dap').step_into() end)
+			vim.keymap.set('n', '<F8>', function() require('dap').step_out() end)
 
 			-- DapUI stuffs
 			local dapui = require("dapui")

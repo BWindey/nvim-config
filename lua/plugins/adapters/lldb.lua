@@ -55,23 +55,51 @@ dap.adapters.codelldb = function(on_adapter)
 end
 
 local function pick_one(items, prompt, label_fn, cb)
-  local co
-  if not cb then
-    co = coroutine.running()
-    if co then
-      cb = function(item)
-        coroutine.resume(co, item)
-      end
-    end
-  end
-  cb = vim.schedule_wrap(cb)
-  vim.ui.select(items, {
-	  prompt = prompt,
-	  format_item = label_fn,
-  }, cb)
-  if co then
-    return coroutine.yield()
-  end
+	local co
+	if not cb then
+		co = coroutine.running()
+		if co then
+			cb = function(item)
+				coroutine.resume(co, item)
+			end
+		end
+	end
+	cb = vim.schedule_wrap(cb)
+	vim.ui.select(items, {
+		prompt = prompt,
+		format_item = label_fn,
+	}, cb)
+	if co then
+		return coroutine.yield()
+	end
+end
+
+local function get_input(_prompt)
+	local co, cb
+	co = coroutine.running()
+	if co then
+		cb = function(input)
+			coroutine.resume(co, input)
+		end
+	end
+	cb = vim.schedule_wrap(cb)
+	local _input = require("nui.input")
+	local input = _input(
+		{
+			position = "50%",
+			border = { style = "rounded" },
+			size = { width = 40 }
+		}, {
+			prompt = _prompt,
+			on_close = function() cb("") end,
+			on_submit = function(value) cb(value) end,
+		}
+	)
+	input:mount()
+	-- vim.ui.input(opts, cb)
+	if co then
+		return coroutine.yield()
+	end
 end
 
 local function select_debug_executable()
@@ -103,10 +131,18 @@ dap.configurations.cpp = {
 			return select_debug_executable()
 		end,
 
-		args = { "--log_level=all" },
+		args = function()
+			local args_list = {}
+			local extra_inputs = get_input("Program args: ")
+			for a in extra_inputs:gmatch("([^ ]+)") do
+				table.insert(args_list, a)
+			end
+			return args_list
+		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
 		terminal = 'integrated',
+		runInTerminal = true,
 
 		pid = function()
 			local handle = io.popen('pgrep hw$')

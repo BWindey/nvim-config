@@ -17,6 +17,10 @@ return {
 			vim.keymap.set('n', '<F5>', function() require('dap').step_over() end)
 			vim.keymap.set('n', '<F2>', function() require('dap').step_into() end)
 			vim.keymap.set('n', '<F8>', function() require('dap').step_out() end)
+			-- And duplicates for on my laptop keyboard
+			vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+			vim.keymap.set('n', '<F9>', function() require('dap').step_into() end)
+			vim.keymap.set('n', '<F11>', function() require('dap').step_out() end)
 
 			-- DapUI stuffs
 			local dapui = require("dapui")

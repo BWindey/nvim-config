@@ -140,8 +140,8 @@ dap.configurations.cpp = {
 		args = function()
 			local args_list = {}
 			local extra_inputs = get_input("Program args: ")
-			for a in vim.split(extra_inputs) do
-				table.insert(args_list, a)
+			for _, e in ipairs(vim.split(extra_inputs, " ")) do
+				table.insert(args_list, e)
 			end
 			return args_list
 		end,

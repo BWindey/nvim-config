@@ -1,32 +1,35 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		opts = {
-			ensure_installed = {
-				"asm",
-				"bash",
-				"c",
-				"cpp",
-				"diff",
-				"haskell",
-				"html",
-				"java",
-				"javascript",
-				"latex",
-				"lua",
-				"make",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"regex",
-				"ruby",
-				"vim",
-				"vimdoc",
-			},
+		build = ":TSUpdate",
+		config = function ()
+			local configs = require("nvim-treesitter.configs")
 
-			-- Only for the ensure_installed
-			sync_install = true,
-			auto_install = true,
-		},
+			configs.setup({
+				ensure_installed = {
+					"asm",
+					"bash",
+					"c",
+					"cpp",
+					"diff",
+					"haskell",
+					"html",
+					"java",
+					"javascript",
+					"lua",
+					"make",
+					"markdown",
+					"markdown_inline",
+					"python",
+					"regex",
+					"ruby",
+					"vim",
+					"vimdoc",
+				},
+				sync_install = true,
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+		end,
 	},
 }

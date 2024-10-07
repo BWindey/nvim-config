@@ -31,9 +31,6 @@ vim.opt.scrolloff = 8		-- Keep 8 lines above/below cursor visible
 vim.opt.signcolumn = "number"
 vim.opt.colorcolumn = "80"	-- Visual guide to keep lines shorter then 80 chars
 
--- Escape terminal mode easily
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
-
 -- Load the plugins first so I can use them (which-key) in the next steps
 require("config.lazy")
 

@@ -11,6 +11,9 @@ map('n', '<C-Left>', '<C-w>h')
 map('n', '<C-Right>', '<C-w>l')
 map('i', '<C-f>', '<C-x><C-f>')
 
+-- Escape terminal mode easily
+map('t', '<Esc>', [[<C-\><C-n>]])
+
 local wk = require("which-key")
 wk.add({
 	mode = 'n',

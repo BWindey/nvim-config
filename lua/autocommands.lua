@@ -1,6 +1,7 @@
 local myAutoCommands = vim.api.nvim_create_augroup("myAutoCommands", { clear = true })
 
 -- Autocommands to only enable relativenumber in a focussed area in normal/insert mode
+-- No numbers should ever be displayed in the help-pages and debugging windows
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "WinLeave" }, {
 	group = myAutoCommands,
 	callback = function()
@@ -18,11 +19,17 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 		if vim.bo.filetype ~= "help" and file_name:find("^DAP") ~= 1 and file_name:find("^%[dap%-") ~= 1 then
 			vim.wo.relativenumber = true
 			vim.cmd([[ redraw ]])
+
+		-- While we're at it, might as well set some extra settings for debugging
+		elseif file_name:find("^DAP") == 1 or file_name:find("^%[dap%-") == 1 then
+			vim.opt_local.scrolloff = 1
 		end
 	end,
 })
 
+
 -- For some reason, Haskell doesn't like tabs...
+-- So this autocommand changes the tab-behaviour locally for haskell
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = myAutoCommands,
 	pattern = "haskell",

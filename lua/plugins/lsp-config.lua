@@ -16,7 +16,6 @@ return {
 					"clangd",				-- C and C++
 					"html",
 					"hls",					-- Haskell
-					"java_language_server",
 					"ts_ls",				-- JS
 					"ltex",					-- Latex
 					"markdown_oxide",
@@ -37,7 +36,6 @@ return {
 			lspconfig.clangd.setup({ capabilities = capabilities })
 			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.hls.setup({ capabilities = capabilities })
-			lspconfig.java_language_server.setup({ capabilities = capabilities })
 			lspconfig.ts_ls.setup({ capabilities = capabilities })
 			lspconfig.ltex.setup({
 				filetypes = { 'tex' },

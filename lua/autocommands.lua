@@ -5,10 +5,8 @@ local myAutoCommands = vim.api.nvim_create_augroup("myAutoCommands", { clear = t
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "WinLeave" }, {
 	group = myAutoCommands,
 	callback = function()
-		if vim.bo.filetype ~= "help" then
-			vim.wo.relativenumber = false
-			vim.cmd([[ redraw ]])
-		end
+		vim.wo.relativenumber = false
+		vim.cmd([[ redraw ]])
 	end,
 })
 
@@ -16,7 +14,11 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 	group = myAutoCommands,
 	callback = function()
 		local file_name = vim.fn.expand("%")
-		if vim.bo.filetype ~= "help" and file_name:find("^DAP") ~= 1 and file_name:find("^%[dap%-") ~= 1 then
+		if vim.bo.filetype ~= "help"
+			and file_name:find("^DAP") ~= 1
+			and file_name:find("^%[dap%-") ~= 1
+			and file_name ~= ""
+		then
 			vim.wo.relativenumber = true
 			vim.cmd([[ redraw ]])
 

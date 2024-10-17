@@ -11,15 +11,15 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"lua_ls",
 					"bashls",
 					"clangd",				-- C and C++
-					"html",
 					"hls",					-- Haskell
-					"ts_ls",				-- JS
+					"html",
 					"ltex",					-- Latex
+					"lua_ls",
 					"markdown_oxide",
 					"ruff",					-- Python
+					"ts_ls",				-- JS
 				}
 			})
 		end,
@@ -31,18 +31,18 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.bashls.setup({ capabilities = capabilities })
 			lspconfig.clangd.setup({ capabilities = capabilities })
-			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.hls.setup({ capabilities = capabilities })
-			lspconfig.ts_ls.setup({ capabilities = capabilities })
+			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.ltex.setup({
 				filetypes = { 'tex' },
  				capabilities = capabilities,
 			})
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.markdown_oxide.setup({ capabilities = capabilities })
 			lspconfig.ruff.setup({ capabilities = capabilities })
+			lspconfig.ts_ls.setup({ capabilities = capabilities })
 
 			-- Add a border to the hover-window
 			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(

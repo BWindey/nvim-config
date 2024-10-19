@@ -29,6 +29,15 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+	group = myAutoCommands,
+	callback = function ()
+		local current_pos = vim.api.nvim_win_get_cursor(0)
+		vim.cmd([[ silent! %s/\s\+$// ]])
+		vim.api.nvim_win_set_cursor(0, current_pos)
+	end
+})
+
 
 -- For some reason, Haskell doesn't like tabs...
 -- So this autocommand changes the tab-behaviour locally for haskell

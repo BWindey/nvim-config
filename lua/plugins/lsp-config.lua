@@ -57,6 +57,7 @@ return {
 				{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover" },
 				{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
 				{ "<leader>ld", vim.lsp.buf.definition, desc = "Jump to definition" },
+				{ "<leader>lu", vim.lsp.buf.references, desc = "List all uses in quickfix" },
 				{ "<leader>la", vim.lsp.buf.code_action, desc = "Code actions" },
 				{ "<leader>lj", group = "Jump to ... diagnostic" },
 				{

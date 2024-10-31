@@ -5,13 +5,14 @@ return {
 			require("autoclose").setup({
 				options = {
 					disable_when_touch = true,
+					disable_command_mode = true,
 					pair_spaces = true,
 				},
 				keys = {
 					["/*"] = {
-						escape = true,
+						escape = false,
 						close = true,
-						pair = "/* */",
+						pair = "/**/",
 						enabled_filetypes = {
 							"c", "cpp", "h",
 						}

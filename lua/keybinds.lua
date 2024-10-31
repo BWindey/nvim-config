@@ -18,14 +18,17 @@ local wk = require("which-key")
 wk.add({
 	mode = 'n',
 	{ "<leader>o", group = "Open..." },
-	{ "<leader>ot", function ()
-		local hor_space = vim.api.nvim_win_get_width(0)
-		local ver_space = vim.api.nvim_win_get_height(0)
-		if hor_space < ver_space * 3 then
-			vim.cmd("botright split +terminal")
-		else
-			vim.cmd("botright vsplit +terminal")
-		end
-		vim.cmd.startinsert()
-	end, desc = "Open terminal where there is most space" }
+	{
+		"<leader>ot", function ()
+			local hor_space = vim.api.nvim_win_get_width(0)
+			local ver_space = vim.api.nvim_win_get_height(0)
+			if hor_space < ver_space * 3 then
+				vim.cmd("botright split +terminal")
+			else
+				vim.cmd("botright vsplit +terminal")
+			end
+			vim.cmd.startinsert()
+		end, desc = "Open terminal where there is most space"
+	},
+	{ "<leader>oq", vim.cmd.copen, desc = "Open quickfix list" }
 })

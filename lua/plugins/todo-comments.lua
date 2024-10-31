@@ -2,7 +2,6 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
 
 		config = function ()
 			local wk = require("which-key")
@@ -14,7 +13,11 @@ return {
 				{ "<leader>tt", "<CMD>TodoTelescope<CR>", desc = "Telescope with all Todo's" },
 			})
 
-			require("todo-comments").setup()
+			require("todo-comments").setup({
+				keywords = {
+					ASK = { icon = "?", color = "hint", alt = { "QUESTION" } },
+				},
+			})
 		end
 	}
 }

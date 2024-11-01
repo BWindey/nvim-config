@@ -18,6 +18,28 @@ return {
 				{ "<leader>fg", ts.live_grep,	desc = "Live grep" },
 				{ "<leader>fb", ts.buffers,		desc = "Search buffers" },
 				{ "<leader>fh", ts.help_tags,	desc = "Search help-tags" },
+				{ "<leader>ft", ts.treesitter,	desc = "Search treesitter tokens" },
+				{ "<leader>fa", ts.current_buffer_fuzzy_find, desc = "Search anything in buffer" },
+				{ "<leader>fd", ts.diagnostics,	desc = "Search LSP diagnostics" },
+
+				{
+					"<leader>fF",
+					function() ts.find_files({
+						hidden = true,
+						no_ignore = true,
+					})
+					end,
+					desc = "Find hidden files"
+				},
+				{
+					"<leader>fm",
+					function()
+						ts.man_pages({
+							sections = { "ALL" }
+						})
+					end,
+					desc = "Search man-pages"
+				},
 			})
 		end,
 	},

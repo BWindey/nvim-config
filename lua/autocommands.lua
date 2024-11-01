@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 			and file_name:find("^DAP") ~= 1
 			and file_name:find("^%[dap%-") ~= 1
 			and file_name ~= ""
+			and file_name:find("^man") ~= 1
 		then
 			vim.wo.relativenumber = true
 			vim.cmd([[ redraw ]])

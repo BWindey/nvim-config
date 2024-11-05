@@ -20,6 +20,7 @@ dap.adapters.codelldb = function(on_adapter)
 	}
 	local handle
 	local pid_or_err
+	-- FIX: this is not portable, only works for user 'bram'
 	handle, pid_or_err = vim.loop.spawn('/home/bram/.local/share/nvim/mason/bin/codelldb', opts, function(code)
 		stdout:close()
 		stderr:close()
@@ -110,7 +111,7 @@ end
 -- Ask the user to select an executable from the list `find` (bash) finds
 local function select_debug_executable()
 	local exes = {}
-	local files = io.popen("find . -type f -executable")
+	local files = io.popen("find -type f -executable -not -path '*/.git/*'")
 	if files then
 		for file in files:lines() do
 			table.insert(exes, file)

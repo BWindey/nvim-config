@@ -42,3 +42,8 @@ wk.add({
 	{ "<leader>qn", vim.cmd.cnext, desc = "Go to next quickfix item" },
 	{ "<leader>qp", vim.cmd.cprevious, desc = "Go to previous quickfix item" },
 })
+wk.add({
+	mode = { 'n', 'v' },
+	{ "<leader>y", "\"+y", desc = "Yank to global clipboard" },
+	{ "<leader>p", "\"+p", desc = "Paste from global clipboard" },
+})

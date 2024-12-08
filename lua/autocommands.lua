@@ -52,3 +52,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.opt_local.expandtab = true		-- Replace '\t' with spaces
 	end
 })
+
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+	group = myAutoCommands,
+	callback = function()
+		-- Visual guide to keep lines shorter then 80 chars
+		vim.opt.colorcolumn = "80"
+	end
+})
+
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+	group = myAutoCommands,
+	callback = function()
+		-- Visual guide to keep lines shorter then 80 chars
+		vim.opt.colorcolumn = ""
+	end
+})

@@ -12,6 +12,8 @@ return {
 				{ "<leader>d", group = "Debugging..." },
 				{ "<leader>db", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
 				{ "<leader>dc", dap.continue, desc = "Continue/start" },
+				{ "<leader>du", dap.continue, desc = "Go up in call stack" },
+				{ "<leader>dd", dap.continue, desc = "Go down in call stack" },
 			})
 			-- Keys lay logically for me this way, F5 in middle, F8 above, F2 below
 			vim.keymap.set('n', '<F5>', function() require('dap').step_over() end)

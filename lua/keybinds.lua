@@ -38,7 +38,7 @@ wk.add({
 
 	{ "<leader>q", group = "Quickfix-list" },
 	{ "<leader>qo", vim.cmd.copen, desc = "Open quickfix list" },
-	{ "<leader>qc", vim.cmd.cclose, desc = "Open quickfix list" },
+	{ "<leader>qc", vim.cmd.cclose, desc = "Close quickfix list" },
 	{ "<leader>qn", vim.cmd.cnext, desc = "Go to next quickfix item" },
 	{ "<leader>qp", vim.cmd.cprevious, desc = "Go to previous quickfix item" },
 })

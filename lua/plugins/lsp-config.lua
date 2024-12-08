@@ -15,7 +15,7 @@ return {
 					"clangd",				-- C and C++
 					"hls",					-- Haskell
 					"html",
-					"ltex",					-- Latex
+					-- "ltex",					-- Latex
 					"lua_ls",
 					"markdown_oxide",
 					"ruff",					-- Python
@@ -35,10 +35,6 @@ return {
 			lspconfig.clangd.setup({ capabilities = capabilities })
 			lspconfig.hls.setup({ capabilities = capabilities })
 			lspconfig.html.setup({ capabilities = capabilities })
-			lspconfig.ltex.setup({
-				filetypes = { 'tex' },
- 				capabilities = capabilities,
-			})
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.markdown_oxide.setup({ capabilities = capabilities })
 			lspconfig.ruff.setup({ capabilities = capabilities })

@@ -41,5 +41,21 @@ return {
 			vim.keymap.set("n", "<C-8>", function() harp:list():select(8) end)
 			vim.keymap.set("n", "<C-9>", function() harp:list():select(9) end)
 		end,
+	},
+	{
+		dir = "~/Programming/Lua/telescope-send-to-harpoon2.nvim",
+		config = function()
+			local tele = require("telescope")
+			tele.load_extension("send_to_harpoon")
+			tele.setup {
+				defaults = {
+					mappings = {
+						i = {
+							["<C-h>"] = require("telescope").extensions.send_to_harpoon.actions.send_selected_to_harpoon
+						},
+					}
+				},
+			}
+		end,
 	}
 }

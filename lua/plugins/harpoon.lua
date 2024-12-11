@@ -15,6 +15,7 @@ return {
 				mode = 'n',
 				{ "<leader>h", group = "Harpoon" },
 				{ "<leader>ha", function() harp:list():add() end, desc = "Add buffer to Harpoon" },
+				{ "<leader>hc", function() harp:list():clear() end, desc = "Clear Harpoon list" },
 				{
 					"<leader>hl",
 					function()
@@ -42,20 +43,4 @@ return {
 			vim.keymap.set("n", "<C-9>", function() harp:list():select(9) end)
 		end,
 	},
-	{
-		dir = "~/Programming/Lua/telescope-send-to-harpoon2.nvim",
-		config = function()
-			local tele = require("telescope")
-			tele.load_extension("send_to_harpoon")
-			tele.setup {
-				defaults = {
-					mappings = {
-						i = {
-							["<C-h>"] = require("telescope").extensions.send_to_harpoon.actions.send_selected_to_harpoon
-						},
-					}
-				},
-			}
-		end,
-	}
 }

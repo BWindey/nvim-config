@@ -20,8 +20,8 @@ dap.adapters.codelldb = function(on_adapter)
 	}
 	local handle
 	local pid_or_err
-	-- FIX: this is not portable, only works for user 'bram'
-	handle, pid_or_err = vim.loop.spawn('/home/bram/.local/share/nvim/mason/bin/codelldb', opts, function(code)
+	-- Assumes that codelldb was installed using mason
+	handle, pid_or_err = vim.loop.spawn(os.getenv("HOME") .. '/.local/share/nvim/mason/bin/codelldb', opts, function(code)
 		stdout:close()
 		stderr:close()
 		handle:close()

@@ -30,6 +30,8 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 8		-- Keep 8 lines above/below cursor visible
 vim.opt.signcolumn = "number"
 
+vim.opt.laststatus = 3		-- Only show 1 status-line regardless of window-count
+
 -- Load the plugins first so I can use them (which-key) in the next steps
 require("config.lazy")
 

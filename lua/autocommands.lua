@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 -- So this autocommand changes the tab-behaviour locally for haskell
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = myAutoCommands,
-	pattern = "haskell",
+	pattern = { "haskell", "cabal" },
 	callback = function ()
 		-- Tabs - spaces, the whole jimmiemagick
 		vim.opt_local.softtabstop = 4		-- Set the number of spaces when pressing tab

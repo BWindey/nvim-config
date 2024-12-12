@@ -13,7 +13,7 @@ local entry_to_harpoon_item = function(entry)
 
 	return {
 		value = file_path,
-		context = { row = 0, col = 0 },
+		context = { row = 1, col = 1 },
 	}
 end
 
@@ -27,7 +27,7 @@ local function send_selected_to_harpoon(prompt_bufnr)
 		harpoon:list():add(entry_to_harpoon_item(entry))
 	end
 
-	actions.close(prompt_bufnr)
+	actions.file_edit(prompt_bufnr)
 end
 
 local function send_all_to_harpoon(prompt_bufnr)
@@ -41,7 +41,7 @@ local function send_all_to_harpoon(prompt_bufnr)
 		harpoon:list():add(entry_to_harpoon_item(entry))
 	end
 
-	actions.close(prompt_bufnr)
+	actions.file_edit(prompt_bufnr)
 end
 
 return {

@@ -1,3 +1,5 @@
+-- Get a Telescope entry and convert it to a Harpoon entry.
+-- Mostly stolen from Telescopes code (entry to quickfix-item)
 local entry_to_harpoon_item = function(entry)
 	local text = entry.text
 
@@ -16,6 +18,9 @@ local entry_to_harpoon_item = function(entry)
 		context = { row = 1, col = 1 },
 	}
 end
+
+-- The 2 functions below were for a part copied from Telescopes code that
+-- adds entries to the quickfix list.
 
 local function send_selected_to_harpoon(prompt_bufnr)
 	local harpoon = require("harpoon")
@@ -93,13 +98,14 @@ return {
 				defaults = {
 					mappings = {
 						n = {
-							["<C-s>"] = send_selected_to_harpoon
+							["<C-s>"] = send_selected_to_harpoon,
+							["<C-a>"] = send_all_to_harpoon,
 						},
 						i = {
-							["<C-a>"] = send_all_to_harpoon
-						}
-					}
-				}
+							["<C-a>"] = send_all_to_harpoon,
+						},
+					},
+				},
 			})
 		end,
 	},

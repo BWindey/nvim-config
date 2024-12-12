@@ -41,6 +41,8 @@ wk.add({
 	{ "<leader>qc", vim.cmd.cclose, desc = "Close quickfix list" },
 	{ "<leader>qn", vim.cmd.cnext, desc = "Go to next quickfix item" },
 	{ "<leader>qp", vim.cmd.cprevious, desc = "Go to previous quickfix item" },
+
+	{ "<leader>s", vim.cmd.write, desc = "Save file" },
 })
 wk.add({
 	mode = { 'n', 'v' },

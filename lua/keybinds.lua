@@ -20,6 +20,30 @@ local function do_vertical()
 	return hor_space > ver_space * 3
 end
 
+local function resize_buffer_vertical()
+	local lines_in_file = vim.fn.line("$") -- last line in buffer
+	vim.cmd.resize(lines_in_file)
+end
+
+local function resize_buffer_horizontal()
+	local longest_line_length = 0
+	local first_visible_line = vim.fn.line("w0")
+	local last_visible_line = vim.fn.line("w$")
+	local num_column_width = vim.opt.numberwidth:get()
+
+	for i=first_visible_line,last_visible_line do
+		local line_length = vim.fn.strdisplaywidth(vim.fn.getline(i))
+		if line_length > longest_line_length then
+			longest_line_length = line_length
+		end
+	end
+
+	longest_line_length = longest_line_length + num_column_width + 1
+
+	vim.cmd(string.format("vertical resize %d", longest_line_length))
+end
+
+
 local wk = require("which-key")
 wk.add({
 	mode = 'n',
@@ -43,6 +67,9 @@ wk.add({
 	{ "<leader>qp", vim.cmd.cprevious, desc = "Go to previous quickfix item" },
 
 	{ "<leader>s", vim.cmd.write, desc = "Save file" },
+
+	{ "<leader>rv", resize_buffer_vertical, desc = "Resize buffer to amount of rows in file" },
+	{ "<leader>rh", resize_buffer_horizontal, desc = "Resize buffer to longest line in file" },
 })
 wk.add({
 	mode = { 'n', 'v' },

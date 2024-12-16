@@ -3,7 +3,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope-fzf-native.nvim',
+			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		},
 
 		config = function()
@@ -40,7 +40,21 @@ return {
 					end,
 					desc = "Search man-pages"
 				},
+				{
+					"<leader>fc",
+					function ()
+						ts.find_files({
+							cwd = vim.fn.stdpath("config")
+						})
+					end,
+					desc = "Find nvim-config files"
+				}
 			})
+			require('telescope').setup {
+				extensions = {
+					fzf = {}
+				}
+			}
 		end,
 	},
 	{

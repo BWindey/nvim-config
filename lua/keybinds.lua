@@ -14,6 +14,10 @@ map('i', '<C-f>', '<C-x><C-f>')
 -- Escape terminal mode easily
 map('t', '<Esc>', [[<C-\><C-n>]])
 
+-- Quickfix navigation
+map('n', '<M-j>', '<cmd>cnext<CR>')
+map('n', '<M-k>', '<cmd>cprev<CR>')
+
 local function do_vertical()
 	local hor_space = vim.api.nvim_win_get_width(0)
 	local ver_space = vim.api.nvim_win_get_height(0)
@@ -63,8 +67,8 @@ wk.add({
 	{ "<leader>q", group = "Quickfix-list" },
 	{ "<leader>qo", vim.cmd.copen, desc = "Open quickfix list" },
 	{ "<leader>qc", vim.cmd.cclose, desc = "Close quickfix list" },
-	{ "<leader>qn", vim.cmd.cnext, desc = "Go to next quickfix item" },
-	{ "<leader>qp", vim.cmd.cprevious, desc = "Go to previous quickfix item" },
+	{ "<leader>qn", vim.cmd.cnext, desc = "Go to next quickfix item, alias of <M-j>" },
+	{ "<leader>qp", vim.cmd.cprevious, desc = "Go to previous quickfix item, alias of <M-k>" },
 
 	{ "<leader>s", vim.cmd.write, desc = "Save file" },
 

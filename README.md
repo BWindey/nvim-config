@@ -61,7 +61,7 @@ These are my highly opiniated vim-settins found in `init.lua`
     their tabs?)
 - softwrap disabled, otherwise things get difficult to read. You should wrap
     yourself, and that's also why I use `signcolum` in insert-mode.
-- scrolloff on 8, maybe a bit much, but often on big screens not an issue
+- scrolloff on 2
 - signcolumn shows signs over the numbers, because I want as much horizontal
     space as I can get (mainly for split views)
 - laststatus to 3 to only show 1 statusline, even on split windows, I think it

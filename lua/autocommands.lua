@@ -1,7 +1,44 @@
 local myAutoCommands = vim.api.nvim_create_augroup("myAutoCommands", { clear = true })
 
--- Autocommands to only enable relativenumber in a focussed area in normal/insert mode
--- No numbers should ever be displayed in the help-pages and debugging windows
+local excluded_filetypes = {
+	"help",
+	"man",
+	"quickfix",
+	"dap-repl",
+	"dapui_watches",
+	"dapui_console",
+	"dapui_stacks",
+	"dapui_scopes",
+	"dapui_breakpoints",
+}
+
+local excluded_buftypes = {
+	"terminal",
+	"prompt",
+	"nofile"
+}
+
+local function should_have_relnum()
+	local filetype = vim.bo.filetype or ""
+	local buftype = vim.bo.buftype or ""
+
+	if vim.list_contains(excluded_filetypes, filetype) then
+		return false
+	elseif vim.list_contains(excluded_buftypes, buftype) then
+		return false
+	end
+
+    -- Check for floating windows
+    local config = vim.api.nvim_win_get_config(0)
+    if config.relative ~= "" then
+        return false
+    end
+
+	return true
+end
+
+-- Autocommands to only enable relativenumber in a focussed window in normal/insert mode
+-- No numbers should ever be displayed in the help-
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "WinLeave" }, {
 	group = myAutoCommands,
 	callback = function()
@@ -13,23 +50,14 @@ vim.api.nvim_create_autocmd({ "CmdlineEnter", "WinLeave" }, {
 vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 	group = myAutoCommands,
 	callback = function()
-		local file_name = vim.fn.expand("%")
-		if vim.bo.filetype ~= "help"
-			and file_name:find("^DAP") ~= 1
-			and file_name:find("^%[dap%-") ~= 1
-			and file_name ~= ""
-			and file_name:find("^man") ~= 1
-		then
+		if should_have_relnum() then
 			vim.wo.relativenumber = true
 			vim.cmd([[ redraw ]])
-
-		-- While we're at it, might as well set some extra settings for debugging
-		elseif file_name:find("^DAP") == 1 or file_name:find("^%[dap%-") == 1 then
-			vim.opt_local.scrolloff = 1
 		end
 	end,
 })
 
+-- Remove trailing whitespace
 vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
 	group = myAutoCommands,
 	callback = function ()
@@ -66,5 +94,13 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
 		-- Visual guide to keep lines shorter then 80 chars
 		vim.opt.colorcolumn = ""
+	end
+})
+
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+	group = myAutoCommands,
+	callback = function ()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
 	end
 })

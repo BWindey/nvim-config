@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
 })
 
 -- Remove trailing whitespace
-vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = myAutoCommands,
 	callback = function ()
 		local current_pos = vim.api.nvim_win_get_cursor(0)

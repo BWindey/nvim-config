@@ -120,6 +120,7 @@ wk.add({
 		end, desc = "Open terminal where there is most space"
 	},
 	{ "<leader>oq", vim.cmd.copen, desc = "Open quickfix list" },
+	{ "<leader>of", toggle_floating_terminal, desc = "Toggle floating terminal" },
 
 	{ "<leader>q", group = "Quickfix-list" },
 	{ "<leader>qo", vim.cmd.copen, desc = "Open quickfix list" },
@@ -136,8 +137,4 @@ wk.add({
 	mode = { 'n', 'v' },
 	{ "<leader>y", "\"+y", desc = "Yank to global clipboard" },
 	{ "<leader>p", "\"+p", desc = "Paste from global clipboard" },
-})
-wk.add({
-	mode = { 'n', 't' },
-	{ "<leader>of", toggle_floating_terminal, desc = "Toggle floating terminal" },
 })

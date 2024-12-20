@@ -18,6 +18,10 @@ map('t', '<Esc>', [[<C-\><C-n>]])
 map('n', '<M-j>', '<cmd>cnext<CR>')
 map('n', '<M-k>', '<cmd>cprev<CR>')
 
+-- Special characters
+map('i', '<M-i>', 'ï')
+map('i', '<M-e>', 'ë')
+
 local function do_vertical()
 	local hor_space = vim.api.nvim_win_get_width(0)
 	local ver_space = vim.api.nvim_win_get_height(0)

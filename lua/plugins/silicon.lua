@@ -3,9 +3,7 @@ return {
 		"michaelrommel/nvim-silicon",
 		lazy = true,
 		cmd = "Silicon",
-
-		config = function()
-			require("nvim-silicon").setup({
+		opts = {
 				font = "JetBrainsMono Nerd Font=34;Noto Color Emoji=34",
 				theme = "gruvbox-dark",
 				background = "#bdae93",
@@ -25,7 +23,6 @@ return {
 						), ":t"
 					)
 				end,
-			})
-		end,
+		}
 	}
 }

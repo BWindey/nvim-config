@@ -2,14 +2,14 @@ return {
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 10000,
-		config = function()
+		opts = {
 			-- Gruvbox settings, see
 			-- https://github.com/ellisonleao/gruvbox.nvim#configuration
-			require("gruvbox").setup({
-				terminal_colors = true,
-				transparent_mode = true,
-			})
+			terminal_colors = true,
+			transparent_mode = true,
+		},
 
+		init = function()
 			vim.o.background = "dark"
 			vim.cmd.colorscheme 'gruvbox'
 		end,

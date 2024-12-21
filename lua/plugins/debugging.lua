@@ -52,33 +52,31 @@ return {
 			"mfussenegger/nvim-dap",
 			"nvim-neotest/nvim-nio",
 		},
-		config = function ()
-			require("dapui").setup({
-				expand_lines = false,
-				layouts = {
-					{
-						elements = {
-							"console",
-							"watches",
-							"scopes",
-						},
-						size = 0.3,
-						position = "right"
+		opts = {
+			expand_lines = false,
+			layouts = {
+				{
+					elements = {
+						"console",
+						"watches",
+						"scopes",
 					},
-					{
-						elements = {
-							"repl",
-							"stacks",
-						},
-						size = 0.3,
-						position = "bottom",
+					size = 0.3,
+					position = "right"
+				},
+				{
+					elements = {
+						"repl",
+						"stacks",
 					},
+					size = 0.3,
+					position = "bottom",
 				},
-				floating = {
-					border = "rounded",
-				},
-			})
-		end
+			},
+			floating = {
+				border = "rounded",
+			},
+		}
 	},
 	{
 		"MunifTanjim/nui.nvim"

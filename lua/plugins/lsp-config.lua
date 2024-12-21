@@ -1,28 +1,23 @@
 return {
 	{
 		"williamboman/mason.nvim",
-
-		config = function()
-			require("mason").setup()
-		end,
+		opts = {},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"bashls",
-					"clangd",				-- C and C++
-					"hls",					-- Haskell
-					"html",
-					-- "ltex",					-- Latex
-					"lua_ls",
-					"markdown_oxide",
-					"ruff",					-- Python
-					"ts_ls",				-- JS
-				}
-			})
-		end,
+		opts = {
+			ensure_installed = {
+				"bashls",
+				"clangd",				-- C and C++
+				"hls",					-- Haskell
+				"html",
+				-- "ltex",					-- Latex
+				"lua_ls",
+				"markdown_oxide",
+				"ruff",					-- Python
+				"ts_ls",				-- JS
+			}
+		}
 	},
 	{
 		"neovim/nvim-lspconfig",

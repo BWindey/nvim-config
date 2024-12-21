@@ -3,7 +3,6 @@ local myAutoCommands = vim.api.nvim_create_augroup("myAutoCommands", { clear = t
 local excluded_filetypes = {
 	"help",
 	"man",
-	"quickfix",
 	"dap-repl",
 	"dapui_watches",
 	"dapui_console",
@@ -15,6 +14,7 @@ local excluded_filetypes = {
 local excluded_buftypes = {
 	"terminal",
 	"prompt",
+	"quickfix",
 	"nofile"
 }
 

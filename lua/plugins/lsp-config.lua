@@ -5,6 +5,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		lazy = true,
 		opts = {
 			ensure_installed = {
 				"bashls",
@@ -21,6 +22,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		lazy = true,
 
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()

@@ -1,3 +1,7 @@
+local function get_ts()
+	return require("telescope.builtin")
+end
+
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -6,56 +10,50 @@ return {
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		},
 
-		config = function()
-			-- Keymap using which-key
-			local wk = require("which-key")
-			local ts = require("telescope.builtin")
+		keys = {
+			{ "<leader>f", group = "Search for..." },
+			{ "<leader>ff", function() get_ts().find_files() end,	desc = "Find files" },
+			{ "<leader>fg", function() get_ts().live_grep() end,	desc = "Live grep" },
+			{ "<leader>fb", function() get_ts().buffers() end, desc = "Search buffers" },
+			{ "<leader>fh", function() get_ts().help_tags() end, desc = "Search help-tags" },
+			{ "<leader>ft", function() get_ts().treesitter() end, desc = "Search treesitter tokens" },
+			{ "<leader>fa", function() get_ts().current_buffer_fuzzy_find() end, desc = "Search anything in buffer" },
+			{ "<leader>fd", function() get_ts().diagnostics() end, desc = "Search LSP diagnostics" },
 
-			wk.add({
-				mode = { 'n' },
-				{ "<leader>f", group = "Search for..." },
-				{ "<leader>ff", ts.find_files,	desc = "Find files" },
-				{ "<leader>fg", ts.live_grep,	desc = "Live grep" },
-				{ "<leader>fb", ts.buffers,		desc = "Search buffers" },
-				{ "<leader>fh", ts.help_tags,	desc = "Search help-tags" },
-				{ "<leader>ft", ts.treesitter,	desc = "Search treesitter tokens" },
-				{ "<leader>fa", ts.current_buffer_fuzzy_find, desc = "Search anything in buffer" },
-				{ "<leader>fd", ts.diagnostics,	desc = "Search LSP diagnostics" },
-
-				{
-					"<leader>fF",
-					function() ts.find_files({
-						hidden = true,
-						no_ignore = true,
+			{
+				"<leader>fF",
+				function() get_ts().find_files({
+					hidden = true,
+					no_ignore = true,
+				})
+				end,
+				desc = "Find hidden files"
+			},
+			{
+				"<leader>fm",
+				function()
+					get_ts().man_pages({
+						sections = { "ALL" }
 					})
-					end,
-					desc = "Find hidden files"
-				},
-				{
-					"<leader>fm",
-					function()
-						ts.man_pages({
-							sections = { "ALL" }
-						})
-					end,
-					desc = "Search man-pages"
-				},
-				{
-					"<leader>fc",
-					function ()
-						ts.find_files({
-							cwd = vim.fn.stdpath("config")
-						})
-					end,
-					desc = "Find nvim-config files"
-				}
-			})
-			require('telescope').setup {
-				extensions = {
-					fzf = {}
-				}
+				end,
+				desc = "Search man-pages"
+			},
+			{
+				"<leader>fc",
+				function ()
+					get_ts().find_files({
+						cwd = vim.fn.stdpath("config")
+					})
+				end,
+				desc = "Find nvim-config files"
 			}
-		end,
+		},
+
+		opts = {
+			extensions = {
+				fzf = {}
+			}
+		}
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",

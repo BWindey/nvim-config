@@ -2,13 +2,19 @@ return {
 	{
 		"alexghergh/nvim-tmux-navigation",
 
-		keys = {
-			{ "<C-h>",		"<cmd>NvimTmuxNavigateLeft<CR>"	},
-			{ "<C-j>",		"<cmd>NvimTmuxNavigateDown<CR>"	},
-			{ "<C-k>",		"<cmd>NvimTmuxNavigateUp<CR>" },
-			{ "<C-l>",		"<cmd>NvimTmuxNavigateRight<CR>" },
-			{ "<C-\\>",		"<cmd>NvimTmuxNavigateLastActive<CR>" },
-			{ "<C-Space>",	"<cmd>NvimTmuxNavigateNext<CR>"	},
-		},
-	}
+		config = function()
+			local tnav = require("nvim-tmux-navigation")
+			local wk = require("which-key")
+
+			wk.add({
+				mode = 'n',
+				{ "<C-h>",		tnav.NvimTmuxNavigateLeft		},
+				{ "<C-j>",		tnav.NvimTmuxNavigateDown		},
+				{ "<C-k>",		tnav.NvimTmuxNavigateUp			},
+				{ "<C-l>",		tnav.NvimTmuxNavigateRight		},
+				{ "<C-\\>",		tnav.NvimTmuxNavigateLastActive	},
+				{ "<C-Space>",	tnav.NvimTmuxNavigateNext		},
+			})
+		end,
+	},
 }

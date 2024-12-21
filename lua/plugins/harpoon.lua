@@ -49,6 +49,36 @@ local function send_all_to_harpoon(prompt_bufnr)
 	actions.file_edit(prompt_bufnr)
 end
 
+local function select_harpoon(index)
+	require("harpoon"):list():select(index)
+end
+
+local function menu_harpoon()
+	require("harpoon").ui:toggle_quick_menu(
+		require("harpoon"):list(),
+		{
+			border = "rounded",
+			title = " Harpoon "
+		}
+	)
+end
+
+local function add_harpoon()
+	require("harpoon"):list():add()
+end
+
+local function clear_harpoon()
+	require("harpoon"):list():clear()
+end
+
+local function next_harpoon()
+	require("harpoon"):list():next()
+end
+
+local function prev_harpoon()
+	require("harpoon"):list():prev()
+end
+
 return {
 	{
 		"ThePrimeagen/harpoon",
@@ -56,43 +86,23 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		keys = {
+			{ "<leader>ha", add_harpoon, desc = "Add buffer to Harpoon" },
+			{ "<leader>hc", clear_harpoon, desc = "Clear Harpoon list" },
+			{ "<leader>hl", menu_harpoon, desc = "Toggle quick menu" },
+			{ "<leader>hn", next_harpoon, desc = "Go to next buffer in Harpoon" },
+			{ "<leader>hp", prev_harpoon, desc = "Go to previous buffer in Harpoon" },
+			{ "<C-1>", function() select_harpoon(1) end },
+			{ "<C-2>", function() select_harpoon(2) end },
+			{ "<C-3>", function() select_harpoon(3) end },
+			{ "<C-4>", function() select_harpoon(4) end },
+			{ "<C-5>", function() select_harpoon(5) end },
+			{ "<C-6>", function() select_harpoon(6) end },
+			{ "<C-7>", function() select_harpoon(7) end },
+			{ "<C-8>", function() select_harpoon(8) end },
+			{ "<C-9>", function() select_harpoon(9) end },
+		},
 		config = function()
-			local harp = require("harpoon")
-			local wk = require("which-key")
-
-			harp.setup()
-
-			wk.add({
-				mode = 'n',
-				{ "<leader>h", group = "Harpoon" },
-				{ "<leader>ha", function() harp:list():add() end, desc = "Add buffer to Harpoon" },
-				{ "<leader>hc", function() harp:list():clear() end, desc = "Clear Harpoon list" },
-				{
-					"<leader>hl",
-					function()
-						harp.ui:toggle_quick_menu(
-							harp:list(),
-							{
-								border = "rounded",
-								title = " Harpoon "
-							}
-						)
-					end,
-					desc = "Toggle quick menu"
-				},
-				{ "<leader>hn", function() harp:list():next() end, desc = "Go to next buffer in Harpoon" },
-				{ "<leader>hp", function() harp:list():prev() end, desc = "Go to previous buffer in Harpoon" },
-			})
-			vim.keymap.set("n", "<C-1>", function() harp:list():select(1) end)
-			vim.keymap.set("n", "<C-2>", function() harp:list():select(2) end)
-			vim.keymap.set("n", "<C-3>", function() harp:list():select(3) end)
-			vim.keymap.set("n", "<C-4>", function() harp:list():select(4) end)
-			vim.keymap.set("n", "<C-5>", function() harp:list():select(5) end)
-			vim.keymap.set("n", "<C-6>", function() harp:list():select(6) end)
-			vim.keymap.set("n", "<C-7>", function() harp:list():select(7) end)
-			vim.keymap.set("n", "<C-8>", function() harp:list():select(8) end)
-			vim.keymap.set("n", "<C-9>", function() harp:list():select(9) end)
-
 			-- Add mappings to Telescope to send things to Harpoon
 			require("telescope").setup({
 				defaults = {

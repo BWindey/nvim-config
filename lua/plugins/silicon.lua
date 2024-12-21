@@ -3,6 +3,9 @@ return {
 		"michaelrommel/nvim-silicon",
 		lazy = true,
 		cmd = "Silicon",
+		keys = {
+			{ "<M-s>", ":Silicon<CR>", mode = 'v' },
+		},
 		opts = {
 				font = "JetBrainsMono Nerd Font=34;Noto Color Emoji=34",
 				theme = "gruvbox-dark",

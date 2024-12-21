@@ -1,28 +1,29 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		lazy = true,
+		keys = {
+			-- { "<leader>d", group = "Debugging..." },
+			{ "<leader>db", "<cmd>DapToggleBreakpoint<CR>", desc = "Toggle breakpoint" },
+			{ "<leader>dc", "<cmd>DapContinue<CR>", desc = "Continue/start" },
+			{ "<leader>ds", "<cmd>DapTerminate<CR>", desc = "Stop debugging" },
+			{ "<leader>du", "<cmd>lua require('dap').up()<CR>", desc = "Go up in call stack" },
+			{ "<leader>dd", "<cmd>lua require('dap').down()<CR>", desc = "Go down in call stack" },
+
+			-- Keys lay logically for me this way, F5 in middle, F8 above, F2 below
+			{ '<F5>', "<cmd>DapStepOver<CR>" },
+			{ '<F2>', "<cmd>DapStepInto<CR>" },
+			{ '<F8>', "<cmd>DapStepOut<CR>" },
+
+			-- And duplicates for on my laptop keyboard
+			{ '<F10>', "<cmd>DapStepOver<CR>" },
+			{ '<F9>' , "<cmd>DapStepInto<CR>" },
+			{ '<F11>', "<cmd>DapStepOut<CR>" },
+		},
 
 		config = function ()
 			-- Keymaps
-			local wk = require("which-key")
 			local dap = require("dap")
-
-			wk.add({
-				mode = 'n',
-				{ "<leader>d", group = "Debugging..." },
-				{ "<leader>db", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
-				{ "<leader>dc", dap.continue, desc = "Continue/start" },
-				{ "<leader>du", dap.continue, desc = "Go up in call stack" },
-				{ "<leader>dd", dap.continue, desc = "Go down in call stack" },
-			})
-			-- Keys lay logically for me this way, F5 in middle, F8 above, F2 below
-			vim.keymap.set('n', '<F5>', function() require('dap').step_over() end)
-			vim.keymap.set('n', '<F2>', function() require('dap').step_into() end)
-			vim.keymap.set('n', '<F8>', function() require('dap').step_out() end)
-			-- And duplicates for on my laptop keyboard
-			vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
-			vim.keymap.set('n', '<F9>', function() require('dap').step_into() end)
-			vim.keymap.set('n', '<F11>', function() require('dap').step_out() end)
 
 			-- DapUI stuffs
 			local dapui = require("dapui")
@@ -52,6 +53,7 @@ return {
 			"mfussenegger/nvim-dap",
 			"nvim-neotest/nvim-nio",
 		},
+		lazy = true,
 		opts = {
 			expand_lines = false,
 			layouts = {
@@ -79,6 +81,7 @@ return {
 		}
 	},
 	{
-		"MunifTanjim/nui.nvim"
+		"MunifTanjim/nui.nvim",
+		lazy = true,
 	}
 }

@@ -3,16 +3,12 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 
+		keys = {
+			{ "<leader>td", "<CMD>TodoQuickFix<CR>", desc = "QuickFix-list with all Todo's" },
+			{ "<leader>tt", "<CMD>TodoTelescope<CR>", desc = "Telescope with all Todo's" },
+		},
+
 		config = function ()
-			local wk = require("which-key")
-
-			wk.add({
-				mode = 'n',
-				{ "<leader>t", group = "Todo's..." },
-				{ "<leader>td", "<CMD>TodoQuickFix<CR>", desc = "QuickFix-list with all Todo's" },
-				{ "<leader>tt", "<CMD>TodoTelescope<CR>", desc = "Telescope with all Todo's" },
-			})
-
 			require("todo-comments").setup({
 				keywords = {
 					ASK = { icon = "?", color = "hint", alt = { "QUESTION" } },

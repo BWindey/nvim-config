@@ -86,6 +86,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		lazy = true,
 		keys = {
 			{ "<leader>ha", add_harpoon, desc = "Add buffer to Harpoon" },
 			{ "<leader>hc", clear_harpoon, desc = "Clear Harpoon list" },

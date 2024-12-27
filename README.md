@@ -27,7 +27,7 @@ pc and saw that my config didn't work like it should.
 
 ## Structure
 This follows the Lazy directory structure. All plugins can be found under
-`lua/plugins/`. Each seperate plugin has its own file, those who work closely
+`lua/plugins/`. Each separate plugin has its own file, those who work closely
 together sit together in a file (f.e. completions).
 
 All plugin-specific keybinds are specified in the file that adds the plugin,
@@ -50,17 +50,17 @@ There are 3 other files under `lua/` that aren't plugins:
         and in command-mode, or unfocused buffers)
     - One to remove all trailing whitespace on entering command-mode
     - One to turn tabs to spaces for Haskell files
-    - One to turn on  signcolumn in insert-mode only
+    - One to turn on signcolumn in insert-mode only
 
 
 ## Default settings
-These are my highly opiniated vim-settins found in `init.lua`
+These are my highly opinionated vim-settings found in `init.lua`
 - numbers and relative numbers on the side
 - tabs stay as tabs and render as 4 spaces (why would you write a tab explicitly
     as 4 spaces and take away the freedom of others on how they want to render
     their tabs?)
 - softwrap disabled, otherwise things get difficult to read. You should wrap
-    yourself, and that's also why I use `signcolum` in insert-mode.
+    yourself, and that's also why I use `colorcolumn` in insert-mode.
 - scrolloff on 2
 - signcolumn shows signs over the numbers, because I want as much horizontal
     space as I can get (mainly for split views)

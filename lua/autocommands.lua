@@ -9,6 +9,7 @@ local excluded_filetypes = {
 	"dapui_stacks",
 	"dapui_scopes",
 	"dapui_breakpoints",
+	"netrw",
 }
 
 local excluded_buftypes = {
@@ -69,7 +70,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 
 -- For some reason, Haskell doesn't like tabs...
--- So this autocommand changes the tab-behaviour locally for haskell
+-- So this autocommand changes the tab-behaviour locally for Haskell
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = myAutoCommands,
 	pattern = { "haskell", "cabal" },

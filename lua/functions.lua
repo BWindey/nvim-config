@@ -23,28 +23,20 @@ local function gobble(lines)
 	end
 end
 
-function Discord()
+function Discord(line1, line2)
 	-- Get file extension based on buffer's filetype
 	local extension = vim.fn.expand("%:e")
 
 	-- Save current register contents
 	local reg_save = vim.fn.getreg('"')
 
-	-- Copy selected text to register
-	vim.api.nvim_command("normal! gvy")
-
-	-- Surround selected text with code block
-	local selected_text = vim.fn.getreg('"')
-
-	-- Gobble longest common whitespace
-	local lines = {}
-	for line in string.gmatch(selected_text .. '\n',  "(.-)\n") do
-		table.insert(lines, line)
-	end
+	-- Get selected lines, and remove common leading whitespace
+	local lines = vim.api.nvim_buf_get_lines(0, line1 - 1, line2, false)
 	lines = gobble(lines)
-	selected_text = table.concat(lines, "\n")
+	local selected_text = table.concat(lines, "\n")
 
-	local code_block = "```" .. extension .. "\n" .. selected_text .. "```\n"
+	-- Surround the text in a Markdown code-block
+	local code_block = "```" .. extension .. "\n" .. selected_text .. "\n```\n"
 
 	-- Copy code block to clipboard
 	vim.fn.setreg("+", code_block)
@@ -53,4 +45,34 @@ function Discord()
 	vim.fn.setreg('"', reg_save)
 end
 
-vim.cmd("command! -range=% Discord :<line1>,<line2>call v:lua.Discord()")
+vim.api.nvim_create_user_command("Discord", function(opts)
+	opts = opts or {}
+	local line1 = opts.line1 or -1
+	local line2 = opts.line2 or -1
+
+	if line1 < 0 or line2 < 0 then
+		print("Invalid range, aborting.")
+		return
+	end
+	Discord(line1, line2)
+end, { range = true })
+
+
+vim.api.nvim_create_user_command("PinTop", function (opts)
+	opts = opts or {}
+	local line1 = opts.line1 or -1
+	local line2 = opts.line2 or -1
+
+	if line1 < 0 or line2 < 0 then
+		print("Invalid range, aborting.")
+		return
+	end
+
+	-- Split current buffer, and make top buffer only show the selection
+	vim.cmd.split()
+	vim.opt_local.scrolloff = 0
+	vim.cmd.resize(line2 - line1 + 1)
+	vim.cmd("normal! " .. line2 .. "G")
+	vim.cmd.wincmd('j')
+
+end, { range = true })

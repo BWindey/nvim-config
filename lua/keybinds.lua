@@ -22,6 +22,9 @@ map('n', '<M-k>', '<cmd>cprev<CR>')
 map('i', '<M-i>', 'ï')
 map('i', '<M-e>', 'ë')
 
+-- For convenience
+map('n', '<leader>w', '<C-w>')
+
 local function do_vertical()
 	local hor_space = vim.api.nvim_win_get_width(0)
 	local ver_space = vim.api.nvim_win_get_height(0)

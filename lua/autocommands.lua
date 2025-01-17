@@ -105,3 +105,19 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
 		vim.opt_local.relativenumber = false
 	end
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	group = myAutoCommands,
+	pattern = { "json", "c3" },
+	callback = function ()
+		vim.opt_local.commentstring = "// %s"
+	end
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	group = myAutoCommands,
+	pattern = { "c", "h" },
+	callback = function ()
+		vim.opt_local.commentstring = "/* %s */"
+	end
+})

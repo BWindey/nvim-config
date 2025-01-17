@@ -23,11 +23,29 @@ return {
 		"neovim/nvim-lspconfig",
 
 		config = function()
+			local util = require('lspconfig/util')
+			local configs = require('lspconfig.configs')
+			if not configs.c3_lsp then
+				configs.c3_lsp = {
+					default_config = {
+						cmd = { "/home/bram/Programming/Go/c3-lsp/server/bin/c3lsp" },
+						filetypes = { "c3", "c3i" },
+						root_dir = function(fname)
+							return util.find_git_ancestor(fname)
+						end,
+						settings = {
+							["diagnostic-delay"] = 50,
+						},
+						name = "c3_lsp"
+					}
+				}
+			end
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
 			lspconfig.bashls.setup({ capabilities = capabilities })
 			lspconfig.clangd.setup({ capabilities = capabilities })
+			lspconfig.c3_lsp.setup{}
 			lspconfig.hls.setup({ capabilities = capabilities })
 			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.lua_ls.setup({ capabilities = capabilities })

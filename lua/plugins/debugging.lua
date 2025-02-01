@@ -22,21 +22,21 @@ return {
 		},
 
 		config = function ()
-			-- Keymaps
 			local dap = require("dap")
-
-			-- DapUI stuffs
 			local dapui = require("dapui")
+
+			-- Start DAPUI when needed, and enable mouse
 			dap.listeners.before.launch.dapui_config = function()
 				vim.o.mouse = "a"
 				dapui.open()
 			end
+			-- Close DAPUI and disable mouse
 			dap.listeners.before.event_terminated.dapui_config = function()
 				vim.o.mouse = ""
 				dapui.close()
 			end
 
-			-- Separate adapters
+			-- Load all debug adapters in '/lua/plugins/adapters'
 			local dap_adapters_dir = vim.fn.stdpath('config') .. '/lua/plugins/adapters/'
 			for _, file in ipairs(vim.fn.readdir(dap_adapters_dir)) do
 				local adapter_path = dap_adapters_dir .. file
@@ -58,26 +58,17 @@ return {
 			expand_lines = false,
 			layouts = {
 				{
-					elements = {
-						"console",
-						"watches",
-						"scopes",
-					},
+					elements = { "console", "watches", "scopes" },
 					size = 0.3,
 					position = "right"
 				},
 				{
-					elements = {
-						"repl",
-						"stacks",
-					},
+					elements = { "repl", "stacks" },
 					size = 0.3,
 					position = "bottom",
 				},
 			},
-			floating = {
-				border = "rounded",
-			},
+			floating = { border = "rounded" },
 		}
 	},
 	{

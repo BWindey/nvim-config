@@ -23,15 +23,28 @@ return {
 		"neovim/nvim-lspconfig",
 
 		config = function()
-			local util = require('lspconfig/util')
 			local configs = require('lspconfig.configs')
 			if not configs.c3_lsp then
 				configs.c3_lsp = {
 					default_config = {
-						cmd = { "/home/bram/Programming/Go/c3-lsp/server/bin/c3lsp" },
+						cmd = {
+							os.getenv("HOME")
+							.. "/Programming/Go/c3-lsp/server/bin/c3lsp"
+						},
 						filetypes = { "c3", "c3i" },
-						root_dir = function(fname)
-							return util.find_git_ancestor(fname)
+						root_dir = function()
+							-- Try project.json
+							local pr_json = vim.fs.root(0, "project.json")
+							if pr_json ~= nil then
+								return pr_json
+							end
+							-- Try git root
+							local git_root = vim.fs.root(0, ".git")
+							if git_root ~= nil then
+								return git_root
+							end
+							-- Nothing found, assume standalone C3 file
+							return vim.fn.getcwd()
 						end,
 						settings = {
 							["diagnostic-delay"] = 50,

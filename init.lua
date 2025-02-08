@@ -48,7 +48,7 @@ require("config.lazy")
 require("autocommands")
 require("functions")
 require("folds")
-require("keybinds")
+require("keybinds") -- Relies on functions!
 
 -- Install C3 treesitter
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

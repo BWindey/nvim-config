@@ -171,11 +171,6 @@ local function format_macro_expansion(macro)
 end
 
 local function show_expansion(lines)
-	local buf = vim.api.nvim_create_buf(false, true)
-
-	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-	vim.bo[buf].filetype = vim.bo.filetype
-
 	local longest_line_length = 0
 	local amount_lines = 0
 	for _, line in ipairs(lines) do
@@ -193,21 +188,14 @@ local function show_expansion(lines)
 	end
 
 	local opts = {
-		relative = "cursor",
-		width = longest_line_length,
 		height = amount_lines,
-		row = 1,
-		col = 0,
-		style = "minimal",
+		width = longest_line_length,
 		border = "rounded",
+		focus_id = "show_expansion",
 	}
-	vim.api.nvim_open_win(buf, true, opts)
-	vim.api.nvim_buf_set_keymap(
-		buf, 'n', '<Esc>', ":q<CR>", { noremap = true, silent = true }
-	)
-	vim.api.nvim_buf_set_keymap(
-		buf, 'n', 'q', ":q<CR>", { noremap = true, silent = true }
-	)
+
+	local b, _ = vim.lsp.util.open_floating_preview(lines, '', opts)
+	vim.bo[b].filetype = vim.bo.filetype
 end
 
 vim.api.nvim_create_user_command("MacroShow", function()

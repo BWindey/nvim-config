@@ -25,6 +25,9 @@ map('i', '<M-e>', 'ë')
 -- For convenience
 map('n', '<leader>w', '<C-w>')
 
+-- Function defined in lua/functions.lua
+map('n', '<leader>lm', ':MacroShow<CR>')
+
 local function do_vertical()
 	local hor_space = vim.api.nvim_win_get_width(0)
 	local ver_space = vim.api.nvim_win_get_height(0)

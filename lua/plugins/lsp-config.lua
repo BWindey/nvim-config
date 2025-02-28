@@ -15,10 +15,9 @@ return {
 				"clangd",				-- C and C++
 				"hls",					-- Haskell
 				"html",
-				-- "ltex",					-- Latex
 				"lua_ls",
 				"markdown_oxide",
-				"ruff",					-- Python
+				"pylsp",				-- Python
 				"ts_ls",				-- JS
 			}
 		}
@@ -67,7 +66,7 @@ return {
 			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.markdown_oxide.setup({ capabilities = capabilities })
-			lspconfig.ruff.setup({ capabilities = capabilities })
+			lspconfig.pylsp.setup({ capabilities = capabilities })
 			lspconfig.ts_ls.setup({ capabilities = capabilities })
 
 			-- Add a border to the hover-window

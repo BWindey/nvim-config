@@ -1,7 +1,11 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		opts = {},
+		opts = {
+			ui = {
+				border = "rounded",
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",

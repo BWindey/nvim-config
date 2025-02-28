@@ -11,12 +11,12 @@ return {
 			render_modes = true,
 			code = {
 				width = 'block',
-				left_pad = 2,
+				left_pad = 1,
 				right_pad = 4,
 			},
 			heading = {
 				width = 'block',
-				left_pad = 2,
+				left_pad = 0,
 				right_pad = 4,
 			},
 		}

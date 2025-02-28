@@ -49,7 +49,6 @@ dap.adapters.codelldb = function(on_adapter)
 		host = '127.0.0.1',
 		port = port
 	}
-	-- 💀
 	-- Wait for codelldb to get ready and start listening before telling nvim-dap to connect
 	-- If you get connect errors, try to increase 500 to a higher value, or check the stderr (Open the REPL)
 	vim.defer_fn(function() on_adapter(adapter) end, 1000)
@@ -164,4 +163,5 @@ dap.configurations.cpp = {
 
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.h = dap.configurations.cpp
+dap.configurations.c3 = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp

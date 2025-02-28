@@ -74,5 +74,14 @@ return {
 	{
 		"MunifTanjim/nui.nvim",
 		lazy = true,
-	}
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+		config = function ()
+			require("dap-python").setup(
+				os.getenv("HOME")
+				.. "/.local/share/python-debug-venv/bin/python"
+			)
+		end,
+	},
 }

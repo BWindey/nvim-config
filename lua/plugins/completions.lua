@@ -10,6 +10,10 @@ return {
 			"rafamadriz/friendly-snippets",	-- Provides the code-snippets
 		},
 		event = "InsertEnter",
+		opts = {
+			region_check_events = "CursorHold,InsertLeave",
+			delete_check_events = "TextChanged,InsertEnter",
+		},
 	},
 	{
 		"hrsh7th/nvim-cmp",

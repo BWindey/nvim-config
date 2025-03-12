@@ -96,15 +96,6 @@ local function create_floating_window(opts)
 
 	local win = vim.api.nvim_open_win(buf, true, win_config)
 
-	-- Shift-escape as quick exit without closing buffer
-	vim.keymap.set(
-		't', "<C-q>", toggle_floating_terminal,
-		{
-			buffer = float_state.floating.buf,
-			noremap = true, silent = true
-		}
-	)
-
 	return { buf = buf, win = win }
 end
 
@@ -115,6 +106,16 @@ function toggle_floating_terminal()
 		})
 		if vim.bo[float_state.floating.buf].buftype ~= "terminal" then
 			vim.cmd.terminal()
+
+			-- Shift-escape as quick exit without closing buffer
+			vim.keymap.set(
+				't',
+				"<C-q>", toggle_floating_terminal,
+				{
+					buffer = float_state.floating.buf,
+					noremap = true, silent = true
+				}
+			)
 		end
 		vim.cmd.startinsert()
 	else

@@ -64,6 +64,9 @@ local float_state = {
 		win = -1,
 	}
 }
+-- Forward declare for circular dependency
+local toggle_floating_terminal
+
 local function create_floating_window(opts)
 	opts = opts or {}
 
@@ -93,10 +96,19 @@ local function create_floating_window(opts)
 
 	local win = vim.api.nvim_open_win(buf, true, win_config)
 
+	-- Shift-escape as quick exit without closing buffer
+	vim.keymap.set(
+		't', "<C-q>", toggle_floating_terminal,
+		{
+			buffer = float_state.floating.buf,
+			noremap = true, silent = true
+		}
+	)
+
 	return { buf = buf, win = win }
 end
 
-local function toggle_floating_terminal()
+function toggle_floating_terminal()
 	if not vim.api.nvim_win_is_valid(float_state.floating.win) then
 		float_state.floating = create_floating_window({
 			buf = float_state.floating.buf

@@ -104,9 +104,19 @@ local function toggle_floating_terminal()
 		if vim.bo[float_state.floating.buf].buftype ~= "terminal" then
 			vim.cmd.terminal()
 		end
+		vim.cmd.startinsert()
 	else
 		vim.api.nvim_win_hide(float_state.floating.win)
 	end
+end
+
+local function open_split_terminal()
+	if do_vertical() then
+		vim.cmd("botright vsplit +terminal")
+	else
+		vim.cmd("botright split +terminal")
+	end
+	vim.cmd.startinsert()
 end
 
 vim.api.nvim_create_user_command("Floatty", toggle_floating_terminal, {})
@@ -115,17 +125,8 @@ local wk = require("which-key")
 wk.add({
 	mode = 'n',
 	{ "<leader>o", group = "Open..." },
-	{
-		"<leader>ot", function ()
-			if do_vertical() then
-				vim.cmd("botright vsplit +terminal")
-			else
-				vim.cmd("botright split +terminal")
-			end
-			vim.cmd.startinsert()
-		end, desc = "Open terminal where there is most space"
-	},
 	{ "<leader>oq", vim.cmd.copen, desc = "Open quickfix list" },
+	{ "<leader>ot", open_split_terminal, desc = "Open terminal where there is most space" },
 	{ "<leader>of", toggle_floating_terminal, desc = "Toggle floating terminal" },
 
 	{ "<leader>q", group = "Quickfix-list" },

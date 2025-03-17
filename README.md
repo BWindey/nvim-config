@@ -15,9 +15,10 @@ again!
     managers or `cargo`
 - fd (optional-recommended): for Telescope, installable with most package
     managers or `cargo`, as `fd` or `fd-find`
-- latex: sigh... install this on you own, and edit the used pdf-viewer and things...
+- latex: sigh... install this on your own, and edit the used pdf-viewer and things...
     I use zathura with mupdf as backend
 - pylatexenc (optional): for inline latex in Markdown, installed using `pip`
+- shellcheck (optional): for bash scripts
 
 Oh, and nvim is needed as well, version 0.10 I think (for some plugins).
 

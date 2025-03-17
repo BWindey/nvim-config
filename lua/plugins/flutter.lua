@@ -1,17 +1,21 @@
 return {
 	{
 		"nvim-flutter/flutter-tools.nvim",
-		lazy = false,
+		ft = "dart",
+		keys = {
+			{
+				"<leader>fr",
+				function ()
+					local tel = require("telescope")
+					tel.load_extension("flutter")
+					tel.extensions.flutter.commands()
+				end,
+				desc = "Search flutter commands"
+			}
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			-- "stevearc/dressing.nvim"
 		},
-		config = function ()
-			local tel = require("telescope")
-			tel.load_extension("flutter")
-			require("which-key").add({
-				{ "<leader>fr", tel.extensions.flutter.commands, desc = "Search flutter commands" }
-			})
-		end,
 	}
 }

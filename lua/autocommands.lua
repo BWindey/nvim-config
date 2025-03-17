@@ -69,19 +69,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 
--- For some reason, Haskell doesn't like tabs...
--- So this autocommand changes the tab-behaviour locally for Haskell
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	group = myAutoCommands,
-	pattern = { "haskell", "cabal" },
-	callback = function ()
-		-- Tabs - spaces, the whole jimmiemagick
-		vim.opt_local.softtabstop = 4		-- Set the number of spaces when pressing tab
-		vim.opt_local.shiftwidth = 4		-- Indentation level 4 spaces
-		vim.opt_local.expandtab = true		-- Replace '\t' with spaces
-	end
-})
-
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	group = myAutoCommands,
 	callback = function()

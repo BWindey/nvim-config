@@ -49,7 +49,6 @@ There are 3 other files under `lua/` that aren't plugins:
     - One to turn off relative numbers where they are not needed (special buffers
         and in command-mode, or unfocused buffers)
     - One to remove all trailing whitespace on entering command-mode
-    - One to turn tabs to spaces for Haskell files
     - One to turn on signcolumn in insert-mode only
 
 

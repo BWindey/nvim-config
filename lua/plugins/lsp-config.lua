@@ -13,7 +13,6 @@ return {
 			ensure_installed = {
 				"bashls",
 				"clangd",				-- C and C++
-				"hls",					-- Haskell
 				"html",
 				"lua_ls",
 				"markdown_oxide",

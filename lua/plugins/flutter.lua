@@ -13,6 +13,11 @@ return {
 				desc = "Search flutter commands"
 			}
 		},
+		opts = {
+			dev_log = {
+				open_cmd = "8split",
+			}
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			-- "stevearc/dressing.nvim"

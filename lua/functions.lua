@@ -44,6 +44,8 @@ function Discord(line1, line2)
 
 	-- Restore original register contents
 	vim.fn.setreg('"', reg_save)
+
+	print("Copied to clipboard")
 end
 
 vim.api.nvim_create_user_command("Discord", function(opts)

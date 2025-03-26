@@ -32,6 +32,9 @@ vim.opt.signcolumn = "number"
 
 vim.opt.laststatus = 3		-- Only show 1 status-line regardless of window-count
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 -- Fix for rasi files (Rofi) and C3 files
 vim.filetype.add {
 	extension = {

@@ -5,11 +5,11 @@ return {
 			keymaps = {
 				["<C-v>"] = {
 					"actions.select",
-					opts = { vertical = true, split = "botright" },
+					opts = { vertical = true },
 				},
 				["<C-x>"] = {
 					"actions.select",
-					opts = { horizontal = true, split = "botright" },
+					opts = { horizontal = true },
 				},
 			}
 		},

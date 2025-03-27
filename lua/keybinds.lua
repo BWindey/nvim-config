@@ -125,9 +125,9 @@ end
 
 local function open_split_terminal()
 	if do_vertical() then
-		vim.cmd("botright vsplit +terminal")
+		vim.cmd("vsplit +terminal")
 	else
-		vim.cmd("botright split +terminal")
+		vim.cmd("split +terminal")
 	end
 	vim.cmd.startinsert()
 end

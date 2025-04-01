@@ -68,11 +68,6 @@ return {
 			lspconfig.pylsp.setup({ capabilities = capabilities })
 			lspconfig.ts_ls.setup({ capabilities = capabilities })
 
-			-- Add a border to the hover-window
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-				vim.lsp.handlers.hover, { border = "rounded" }
-			)
-
 			-- Keymaps using Which-key
 			local wk = require("which-key")
 			wk.add({

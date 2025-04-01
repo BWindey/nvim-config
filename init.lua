@@ -35,6 +35,10 @@ vim.opt.laststatus = 3		-- Only show 1 status-line regardless of window-count
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Add a border to the hover-window
+vim.o.winborder = 'rounded'
+-- vim.diagnostic.config({ virtual_lines = { current_line = true } })
+
 -- Fix for rasi files (Rofi) and C3 files
 vim.filetype.add {
 	extension = {

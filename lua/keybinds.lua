@@ -11,6 +11,14 @@ map('n', '<C-Left>', '<C-w>h')
 map('n', '<C-Right>', '<C-w>l')
 map('i', '<C-f>', '<C-x><C-f>')
 
+vim.keymap.set('n', '<leader>bt', function ()
+	if vim.o.background == "light" then
+		vim.o.background = "dark"
+	else
+		vim.o.background = "light"
+	end
+end)
+
 -- Escape terminal mode easily
 map('t', '<Esc>', [[<C-\><C-n>]])
 

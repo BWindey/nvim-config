@@ -75,8 +75,9 @@ vim.api.nvim_create_user_command("PinTop", function (opts)
 	end
 
 	-- Split current buffer, and make top buffer only show the selection
-	vim.cmd.split()
+	vim.cmd("topleft split")
 	vim.opt_local.scrolloff = 0
+	vim.opt_local.winfixheight = true
 	vim.cmd.resize(line2 - line1 + 1)
 	vim.cmd("normal! " .. line2 .. "G")
 	vim.cmd.wincmd('j')

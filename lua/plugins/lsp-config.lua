@@ -61,7 +61,6 @@ return {
 			lspconfig.bashls.setup({ capabilities = capabilities })
 			lspconfig.clangd.setup({ capabilities = capabilities })
 			lspconfig.c3_lsp.setup{}
-			lspconfig.hls.setup({ capabilities = capabilities })
 			lspconfig.html.setup({ capabilities = capabilities })
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.markdown_oxide.setup({ capabilities = capabilities })

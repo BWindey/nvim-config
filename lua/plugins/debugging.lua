@@ -27,11 +27,15 @@ return {
 
 			-- Start DAPUI when needed, and enable mouse
 			dap.listeners.before.launch.dapui_config = function()
+				vim.opt.splitright = false
+				vim.opt.splitbelow = false
 				vim.o.mouse = "a"
 				dapui.open()
 			end
 			-- Close DAPUI and disable mouse
 			dap.listeners.before.event_terminated.dapui_config = function()
+				vim.opt.splitright = true
+				vim.opt.splitbelow = true
 				vim.o.mouse = ""
 				dapui.close()
 			end

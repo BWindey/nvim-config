@@ -27,6 +27,9 @@ end
 function Discord(line1, line2)
 	-- Get file extension based on buffer's filetype
 	local extension = vim.bo.filetype
+	if extension == "c3" then
+		extension = "cpp"
+	end
 
 	-- Save current register contents
 	local reg_save = vim.fn.getreg('"')

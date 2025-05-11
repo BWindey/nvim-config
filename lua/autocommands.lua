@@ -85,14 +85,6 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	end
 })
 
-vim.api.nvim_create_autocmd({ "TermOpen" }, {
-	group = myAutoCommands,
-	callback = function ()
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-	end
-})
-
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = myAutoCommands,
 	pattern = { "json", "c3" },

@@ -30,8 +30,6 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 2		-- Keep 2 lines above/below cursor visible
 vim.opt.signcolumn = "number"
 
-vim.opt.laststatus = 3		-- Only show 1 status-line regardless of window-count
-
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 

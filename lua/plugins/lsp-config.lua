@@ -77,6 +77,7 @@ return {
 				{ "<leader>ld", vim.lsp.buf.definition, desc = "Jump to definition" },
 				{ "<leader>lu", vim.lsp.buf.references, desc = "List all uses in quickfix" },
 				{ "<leader>la", vim.lsp.buf.code_action, desc = "Code actions" },
+				{ "<leader>lf", vim.lsp.buf.format, desc = "Format buffer" },
 				{ "<leader>lj", group = "Jump to ... diagnostic" },
 				{
 					"<leader>ljn",

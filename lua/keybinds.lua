@@ -131,8 +131,14 @@ function toggle_floating_terminal()
 	end
 end
 
+-- Open a split terminal where it fits.
+-- When there are already 2 visible windows open, it opens in a new tab,
+-- otherwise it opens a split where there's the most room.
+-- After opening the terminal it immediatly starts insert mode.
 local function open_split_terminal()
-	if do_vertical() then
+    if #vim.api.nvim_tabpage_list_wins(0) >= 2 then
+        vim.cmd("tabnew +terminal")
+    elseif do_vertical() then
 		vim.cmd("vsplit +terminal")
 	else
 		vim.cmd("split +terminal")

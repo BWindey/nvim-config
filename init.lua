@@ -59,8 +59,7 @@ require("keybinds") -- Relies on functions!
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.c3 = {
 	install_info = {
-		-- HACK: fix for operator-overloads
-		url = "https://github.com/m0tholith/tree-sitter-c3",
+		url = "https://github.com/c3lang/tree-sitter-c3",
 		files = { "src/parser.c", "src/scanner.c" },
 		branch = "main",
 	},

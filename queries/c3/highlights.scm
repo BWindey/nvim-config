@@ -38,44 +38,44 @@
 ] @keyword
 
 [
- "$alignof"
- "$assert"
- "$assignable"
- "$case"
- "$default"
- "$defined"
- "$echo"
- "$else"
- "$embed"
- "$endfor"
- "$endforeach"
- "$endif"
- "$endswitch"
- "$eval"
- "$evaltype"
- "$error"
- "$exec"
- "$extnameof"
- "$feature"
- "$for"
- "$foreach"
- "$if"
- "$include"
- "$is_const"
- "$nameof"
- "$offsetof"
- "$qnameof"
- "$sizeof"
- "$stringify"
- "$switch"
- "$typefrom"
- "$typeof"
- "$vacount"
- "$vatype"
- "$vaconst"
- "$vaarg"
- "$vaexpr"
- "$vasplat"
+  "$alignof"
+  "$assert"
+  "$assignable"
+  "$case"
+  "$default"
+  "$defined"
+  "$echo"
+  "$else"
+  "$embed"
+  "$endfor"
+  "$endforeach"
+  "$endif"
+  "$endswitch"
+  "$eval"
+  "$evaltype"
+  "$error"
+  "$exec"
+  "$extnameof"
+  "$feature"
+  "$for"
+  "$foreach"
+  "$if"
+  "$include"
+  "$is_const"
+  "$nameof"
+  "$offsetof"
+  "$qnameof"
+  "$sizeof"
+  "$stringify"
+  "$switch"
+  "$typefrom"
+  "$typeof"
+  "$vacount"
+  "$vatype"
+  "$vaconst"
+  "$vaarg"
+  "$vaexpr"
+  "$vasplat"
  ] @keyword.directive
 
 "assert" @keyword.debug
@@ -219,7 +219,7 @@
 ((builtin) @constant.builtin (#match? @constant.builtin "_*[A-Z][_A-Z0-9]*"))
 
 ;; Type Property (from `c3c --list-type-properties`)
-(type_access_expr (access_ident [(ident) "typeid"] @variable.builtin
+(type_access_expr (access_ident (ident) @variable.builtin
                                 (#any-of? @variable.builtin
                                           "alignof"
                                           "associated"
@@ -232,6 +232,8 @@
                                           "is_ordered"
                                           "is_substruct"
                                           "len"
+                                          "lookup"
+                                          "lookup_field"
                                           "max"
                                           "membersof"
                                           "methodsof"
@@ -280,7 +282,6 @@
 ;; Function Definition
 (func_header name: (_) @function)
 (func_header method_type: (_) name: (_) @function.method)
-;; NOTE macro_declaration can also have a func_header
 (macro_header name: (_) @function)
 (macro_header method_type: (_) name: (_) @function.method)
 

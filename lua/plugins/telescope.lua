@@ -2,6 +2,24 @@ local function get_ts()
 	return require("telescope.builtin")
 end
 
+local function get_c3_std_lib_path()
+	-- Query c3c for its installation directory
+	local handle = io.popen("c3c --version 2>&1")
+	if not handle then return end
+
+	local result = handle:read("*a")
+	local success, _, _ = handle:close()
+
+	if not success then return end
+
+	local c3_dir = result:match("Installed directory: %s*(.-)\n")
+	if not c3_dir then return end
+
+	-- Assume that the standard library lives in same directory
+	-- as c3c installation directory
+	return c3_dir .. "/lib/std/"
+end
+
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -48,25 +66,16 @@ return {
 				desc = "Find nvim-config files"
 			},
 			{
-				"<leader>f3",
+				"<leader>f3f",
 				function ()
-					-- Query c3c for its installation directory
-					local handle = io.popen("c3c --version 2>&1")
-					if not handle then return end
-
-					local result = handle:read("*a")
-					local success, _, _ = handle:close()
-
-					if not success then return end
-
-					local c3_dir = result:match("Installed directory: %s*(.-)\n")
-					if not c3_dir then return end
-
-					-- Assume that the standard library lives in same directory
-					-- as c3c installation directory
-					local c3_std_lib_dir = c3_dir .. "/lib/std/"
-
-					get_ts().find_files({ cwd = c3_std_lib_dir })
+					get_ts().find_files({ cwd = get_c3_std_lib_path() })
+				end,
+				desc = "Search C3 standard library"
+			},
+			{
+				"<leader>f3g",
+				function ()
+					get_ts().live_grep({ cwd = get_c3_std_lib_path() })
 				end,
 				desc = "Search C3 standard library"
 			},

@@ -46,7 +46,30 @@ return {
 					})
 				end,
 				desc = "Find nvim-config files"
-			}
+			},
+			{
+				"<leader>f3",
+				function ()
+					-- Query c3c for its installation directory
+					local handle = io.popen("c3c --version 2>&1")
+					if not handle then return end
+
+					local result = handle:read("*a")
+					local success, _, _ = handle:close()
+
+					if not success then return end
+
+					local c3_dir = result:match("Installed directory: %s*(.-)\n")
+					if not c3_dir then return end
+
+					-- Assume that the standard library lives in same directory
+					-- as c3c installation directory
+					local c3_std_lib_dir = c3_dir .. "/lib/std/"
+
+					get_ts().find_files({ cwd = c3_std_lib_dir })
+				end,
+				desc = "Search C3 standard library"
+			},
 		},
 
 		opts = {

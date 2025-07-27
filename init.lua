@@ -33,6 +33,8 @@ vim.opt.signcolumn = "number"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.opt.colorcolumn = "80"
+
 -- Add a border to the hover-window
 vim.o.winborder = 'rounded'
 -- vim.diagnostic.config({ virtual_lines = { current_line = true } })

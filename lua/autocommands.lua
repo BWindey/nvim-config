@@ -69,21 +69,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-	group = myAutoCommands,
-	callback = function()
-		-- Visual guide to keep lines shorter then 80 chars
-		vim.opt.colorcolumn = "80"
-	end
-})
+-- vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+-- 	group = myAutoCommands,
+-- 	callback = function()
+-- 		-- Visual guide to keep lines shorter then 81 chars
+-- 		vim.opt.colorcolumn = "80"
+-- 	end
+-- })
 
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-	group = myAutoCommands,
-	callback = function()
-		-- Visual guide to keep lines shorter then 80 chars
-		vim.opt.colorcolumn = ""
-	end
-})
+-- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+-- 	group = myAutoCommands,
+-- 	callback = function()
+-- 		-- Visual guide to keep lines shorter then 80 chars
+-- 		vim.opt.colorcolumn = ""
+-- 	end
+-- })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = myAutoCommands,

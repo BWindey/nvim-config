@@ -15,8 +15,8 @@ again!
     managers or `cargo`
 - fd (optional-recommended): for Telescope, installable with most package
     managers or `cargo`, as `fd` or `fd-find`
-- latex: sigh... install this on your own, and edit the used pdf-viewer and things...
-    I use zathura with mupdf as backend
+- typst: markup language, mix between latex and markdown, install using your
+    package manager
 - pylatexenc (optional): for inline latex in Markdown, installed using `pip`
 - shellcheck (optional): for bash scripts
 

@@ -13,6 +13,7 @@ return {
 			require("todo-comments").setup({
 				keywords = {
 					ASK = { icon = "?", color = "hint", alt = { "QUESTION" } },
+					IDEA = { icon = "\u{f400}", color = "#D79921" },
 				},
 			})
 		end

@@ -14,6 +14,7 @@ return {
 				keywords = {
 					ASK = { icon = "?", color = "hint", alt = { "QUESTION" } },
 					IDEA = { icon = "\u{f400}", color = "#D79921" },
+					STEPS = { icon = "\u{f0117}", color = "#B8BB26" },
 				},
 			})
 		end

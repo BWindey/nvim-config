@@ -50,7 +50,7 @@ There are 3 other files under `lua/` that aren't plugins:
     - One to turn off relative numbers where they are not needed (special buffers
         and in command-mode, or unfocused buffers)
     - One to remove all trailing whitespace on entering command-mode
-    - One to turn on signcolumn in insert-mode only
+    - Some settings for certain programming languages
 
 
 ## Default settings
@@ -60,10 +60,11 @@ These are my highly opinionated vim-settings found in `init.lua`
     as 4 spaces and take away the freedom of others on how they want to render
     their tabs?)
 - softwrap disabled, otherwise things get difficult to read. You should wrap
-    yourself, and that's also why I use `colorcolumn` in insert-mode.
+    yourself, and that's also why I use `colorcolumn`.
 - scrolloff on 2
 - signcolumn shows signs over the numbers, because I want as much horizontal
     space as I can get (mainly for split views)
 - laststatus to 3 to only show 1 statusline, even on split windows, I think it
     looks a bit cleaner
-
+- signcolumn on 80 to prevent me from writing lines that I cannot read anymore
+    in split-screen

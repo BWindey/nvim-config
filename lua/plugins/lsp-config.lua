@@ -15,6 +15,7 @@ return {
 				"clangd",				-- C and C++
 				"html",
 				"lua_ls",
+				"tinymist",             -- Typst
 				"markdown_oxide",
 				"pylsp",				-- Python
 				"ts_ls",				-- JS
@@ -66,6 +67,14 @@ return {
 			lspconfig.markdown_oxide.setup({ capabilities = capabilities })
 			lspconfig.pylsp.setup({ capabilities = capabilities })
 			lspconfig.ts_ls.setup({ capabilities = capabilities })
+			lspconfig.tinymist.setup({
+				capabilities = capabilities,
+				settings = {
+					formatterMode = "typstyle",
+					exportPdf = "onType",
+					semanticTokens = "disable",
+				}
+			})
 
 			-- Keymaps using Which-key
 			local wk = require("which-key")

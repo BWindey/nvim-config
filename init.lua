@@ -46,6 +46,7 @@ vim.filetype.add {
 		c3 = "c3",
 		c3i = "c3",
 		c3t = "c3",
+		typst = "typst"
 	},
 }
 -- Load the plugins first so I can use them (which-key) in the next steps

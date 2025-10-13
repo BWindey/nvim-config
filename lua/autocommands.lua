@@ -103,6 +103,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	group = myAutoCommands,
+	pattern = "typst",
+	callback = function ()
+		vim.cmd("TypstPreview")
+	end
+})
+
 -- HACK: until telescope updates
 vim.api.nvim_create_autocmd("User", {
 	pattern = "TelescopeFindPre",

@@ -77,6 +77,7 @@ local function pick_one(items, prompt, label_fn, cb)
 end
 
 -- Utility function to ask the user for some input in a floating window
+local prev_input = ""
 local function get_input(_prompt)
 	local co, cb
 	co = coroutine.running()
@@ -88,19 +89,29 @@ local function get_input(_prompt)
 	cb = vim.schedule_wrap(cb)
 
 	-- nui for the floating window
-	local _input = require("nui.input")
-	local input = _input(
+	local Input = require("nui.input")
+	local input = Input(
 		{
 			position = "50%",
 			border = { style = "rounded" },
-			size = { width = 40 }
+			size = { width = 40 },
 		}, {
 			prompt = _prompt,
+			default_value = prev_input,
 			on_close = function() cb("") end,
-			on_submit = function(value) cb(value) end,
+			on_submit = function(value)
+				prev_input = value
+				cb(value)
+			end,
 		}
 	)
 	input:mount()
+
+	-- Protect against accidental leaving of window
+	local event = require("nui.utils.autocmd").event
+	input:on(event.BufLeave, function ()
+		input:unmount()
+	end)
 
 	if co then
 		return coroutine.yield()
